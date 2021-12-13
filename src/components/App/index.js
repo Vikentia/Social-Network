@@ -2,10 +2,9 @@ import React from 'react';
 import './style.css';
 import Header from '../Header/index';
 import Navigation from '../Navigation';
-import Content from '../Content';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Props from '../Props/index';
-import Component from '../Component/index';
+import { BrowserRouter, Routes } from 'react-router-dom';
+import Profile from '../Profile';
+import Dialogs from '../Dialogs';
 
 function App() {
   return (
@@ -13,10 +12,10 @@ function App() {
       <div className="App">
         <Header />
         <Navigation />
-        <Content />
-        <div>
-          <Routes path='/component' component={Component} />
-          <Routes path='/props' component={Props} />
+
+        <div className='content'>
+          <Routes path='/dialogs' component={Dialogs} />
+          <Routes path='/profile' component={Profile} />
         </div>
       </div>
     </BrowserRouter>

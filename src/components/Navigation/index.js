@@ -1,24 +1,19 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './style.css';
 
 function Navigation() {
     return (
         <div className='nav'>
-            <div className="context">
-                <a href="/context">Навигационное меню</a>
+            <div> Навигационное меню </div>
+
+            <div className="profile">
+                <NavLink to="/profile">Profile</NavLink>
             </div>
-            <div className="component">
-                <a href="/component">Component </a>
+            <div className="messages">
+                <NavLink to="/dialogs">Messages</NavLink>
             </div>
-            <div className="props">
-                <a href="/props"> Props</a>
-            </div>
-            <div className="state">
-                <a href="/state">State</a>
-            </div>
-            <div className="route">
-                <a href="/route">Route</a>
-            </div>
+
         </div>
 
     )
