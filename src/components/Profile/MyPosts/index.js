@@ -5,8 +5,8 @@ import './style.css';
 function MyPosts() {
     return (
         <div className="myPosts">
-
-            <textarea></textarea>
+            <h3>My posts</h3>
+            <div><textarea></textarea></div>
             <button>Add</button>
             <button>Delete</button>
             <Post message={'Hello'} />

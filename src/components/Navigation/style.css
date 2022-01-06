@@ -1,8 +1,17 @@
 .nav {
-    background-color: cyan;
+    background-image: url(../../pic/bc.jpg) ;
     grid-area: n;
+    text-align: center;
+   
 }
 
 .nav a {
 text-decoration: none;
+}
+
+.active {
+    background: #dfdbdb;
+}
+.nav, .profile, .messages {
+    padding-top: 10px;
 }

@@ -1,4 +1,4 @@
 .header {
-    background-color: darkgrey;
+    background-image: linear-gradient(white, gray);
     grid-area: h;
 }
