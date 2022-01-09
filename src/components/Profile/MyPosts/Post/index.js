@@ -7,7 +7,7 @@ function Post(props) {
             <img src='https://get.wallhere.com/photo/1600x1200-px-boxes-Danbo-eyes-fallen-glowing-leaves-1629619.jpg' alt='ava' />
             Post: {props.message}
             <div>
-                <span> Like</span>
+                <span> Like {props.likesCount}</span>
             </div>
         </div>
     )

@@ -7,7 +7,8 @@ import Profile from '../Profile';
 import Dialogs from '../Dialogs';
 
 
-function App() {
+
+function App(props) {
   return (
     <Router>
 
@@ -17,8 +18,8 @@ function App() {
 
         <div className='content'>
           <Routes>
-            <Route path='/dialogs' element={<Dialogs />} />
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/dialogs' element={<Dialogs dialogData={props.state.messagesPages.dialogData} messageData={props.state.messagesPages.messageData} />} />
+            <Route path='/profile' element={<Profile postsData={props.state.profileRages.postsData} />} />
           </Routes>
         </div>
       </div>
