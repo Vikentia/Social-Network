@@ -1,6 +1,6 @@
 import React from "react";
-import Message from "./Message";
-import Dialog from "./Dialog";
+import Message from "./Message/Message";
+import Dialog from "./Dialog/Dialog";
 import './style.css';
 
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css';
-import Header from '../Header/index';
-import Navigation from '../Navigation';
+import Header from '../Header/Header';
+import Navigation from '../Navigation/Navigation';
+import Profile from '../Profile/Profile';
+import Dialogs from '../Dialogs/Dialogs';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Profile from '../Profile';
-import Dialogs from '../Dialogs';
 
 
 
@@ -18,8 +18,13 @@ function App(props) {
 
         <div className='content'>
           <Routes>
-            <Route path='/dialogs' element={<Dialogs dialogData={props.state.messagesPages.dialogData} messageData={props.state.messagesPages.messageData} />} />
-            <Route path='/profile' element={<Profile postsData={props.state.profileRages.postsData} />} />
+            <Route path='/dialogs' element={<Dialogs
+              dialogData={props.state.messagesPages.dialogData}
+              messageData={props.state.messagesPages.messageData} />} />
+            <Route path='/profile' element={<Profile
+              profilePage={props.state.profilePages}
+              addPost={props.addPost}
+              updateNewPostText={props.updateNewPostText} />} />
           </Routes>
         </div>
       </div>
