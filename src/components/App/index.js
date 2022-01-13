@@ -20,11 +20,11 @@ function App(props) {
           <Routes>
             <Route path='/dialogs' element={<Dialogs
               dialogData={props.state.messagesPages.dialogData}
-              messageData={props.state.messagesPages.messageData} />} />
+              messageData={props.state.messagesPages.messageData}
+              store={props.store} />} />
             <Route path='/profile' element={<Profile
               profilePage={props.state.profilePages}
-              addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText} />} />
+              dispatch={props.dispatch} />} />
           </Routes>
         </div>
       </div>
