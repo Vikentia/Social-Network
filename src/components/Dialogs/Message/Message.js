@@ -2,8 +2,8 @@ import React from "react";
 
 
 function Message(props) {
-    return <div className="message">
-        <div className="message">{props.message}</div>
+    return <div >
+        <div>{props.message}</div>
     </div>
 }
 

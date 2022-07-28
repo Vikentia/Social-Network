@@ -1,8 +1,8 @@
 import React from 'react';
-import './style.css';
+import s from './Header.module.scss';
 
 function Header() {
-    return <div className='header'>
+    return <div className={s.header}>
         Шапка сайта
     </div>
 }

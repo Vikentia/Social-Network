@@ -1,18 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './style.css';
+import s from './Navigation.module.scss';
 
 function Navigation() {
     return (
-        <div className='nav'>
+        <div className={s.nav}>
             <div> Навигационное меню </div>
 
-            <div className="profile">
+            <div className={s.profile}>
                 <NavLink to="/profile">Profile</NavLink>
             </div>
-            <div className="messages">
+            <div className={s.messages}>
                 <NavLink to="/dialogs">Messages</NavLink>
             </div>
+
 
         </div>
 
