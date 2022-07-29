@@ -3,12 +3,13 @@ import s from './App.module.scss';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import Profile from '../Profile/Profile';
-import Dialogs from '../Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
+import DialogsContainer from '../Dialogs/DialogsContainer';
 
 
 
 const App = (props) => {
+
   return (
     <div className={s.App}>
       <Header />
@@ -16,15 +17,8 @@ const App = (props) => {
 
       <div className={s.content}>
         <Routes>
-          <Route path='/dialogs' element={<Dialogs
-            // dialogData={props.state.messagesPages.dialogData}
-            // messageData={props.state.messagesPages.messageData}
-            state={props.store} />}
-          />
-          <Route path='/profile' element={<Profile
-            profilePage={props.state.profilePages}
-            dispatch={props.dispatch} />}
-          />
+          <Route path='/dialogs' element={<DialogsContainer store={props.store} />} />
+          <Route path='/profile' element={<Profile store={props.store} />} />
         </Routes>
       </div>
     </div>
