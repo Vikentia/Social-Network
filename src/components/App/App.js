@@ -6,10 +6,7 @@ import Profile from '../Profile/Profile';
 import { Route, Routes } from 'react-router-dom';
 import DialogsContainer from '../Dialogs/DialogsContainer';
 
-
-
 const App = (props) => {
-
   return (
     <div className={s.App}>
       <Header />
@@ -17,8 +14,8 @@ const App = (props) => {
 
       <div className={s.content}>
         <Routes>
-          <Route path='/dialogs' element={<DialogsContainer store={props.store} />} />
-          <Route path='/profile' element={<Profile store={props.store} />} />
+          <Route path='/dialogs' element={<DialogsContainer />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </div>
     </div>
