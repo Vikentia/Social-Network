@@ -10,8 +10,8 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageBody: () => dispatch(sendMessageCreater()),
-        sendMessage: (body) => dispatch(updateNewMessageBodyCreater(body)),
+        sendMessage: () => dispatch(sendMessageCreater()),
+        updateNewMessageBody: (body) => dispatch(updateNewMessageBodyCreater(body)),
     }
 }
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
