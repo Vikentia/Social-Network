@@ -5,13 +5,16 @@ import s from './Navigation.module.scss';
 function Navigation() {
     return (
         <div className={s.nav}>
-            <div> Навигационное меню </div>
+            <div className={s.title}> Навигационное меню </div>
 
-            <div className={s.profile}>
+            <div className={s.nav__item}>
                 <NavLink to="/profile">Profile</NavLink>
             </div>
-            <div className={s.messages}>
+            <div className={s.nav__item}>
                 <NavLink to="/dialogs">Messages</NavLink>
+            </div>
+            <div className={s.nav__item}>
+                <NavLink to="/users">Users</NavLink>
             </div>
 
 

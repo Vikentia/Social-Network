@@ -1,17 +1,23 @@
 .nav {
-    background-image: url(../../pic/bc.jpg) ;
+    background-image: url(../../pic/bc.jpg);
     grid-area: n;
     text-align: center;
-   
-}
-
-.nav a {
-text-decoration: none;
-}
-
-.active {
-    background: #dfdbdb;
-}
-.nav, .profile, .messages {
     padding-top: 10px;
+
+    a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+            font-size: 1.1em;
+        }
+    }
+
+    &__item {
+        padding: 5px;
+    }
+}
+
+.title {
+    font-size: 20px;
+    margin: 15px auto;
 }
