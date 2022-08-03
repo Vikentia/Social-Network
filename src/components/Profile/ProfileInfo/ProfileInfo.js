@@ -1,7 +1,12 @@
 import React from "react";
+import { Preloader } from "../../common/Preloader/Preloader";
 import s from "./ProfileInfo.module.scss";
 
-function ProfileInfo() {
+const ProfileInfo = (props) => {
+  if (!props.profile) {
+    return <Preloader />
+  }
+  console.log(props.profile);
   return (
     <div className={s.profileInfo}>
       <img
@@ -10,7 +15,12 @@ function ProfileInfo() {
         alt=""
         photo
       />
-      <div className={s.description_block}>ava + description</div>
+      <div className={s.description_block}>
+        <p>Профиль {props.profile.fullName}, id: {props.profile.userId}</p>
+        <div><img src={props.profile.photos.small} /></div>
+        O себе: {props.profile.aboutMe}
+      </div>
+
     </div>
   );
 }

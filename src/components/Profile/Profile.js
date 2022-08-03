@@ -5,10 +5,11 @@ import s from './Profile.module.scss'
 
 
 
-function Profile(props) {
+const Profile = (props) => {
+
     return (
         <div className={s.profile}>
-            <ProfileInfo />
+            <ProfileInfo profile={props.profile} />
             <MyPostsContainer />
         </div>
     )
