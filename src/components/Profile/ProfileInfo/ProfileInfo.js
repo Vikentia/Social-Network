@@ -6,7 +6,7 @@ const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />
   }
-  console.log(props.profile);
+  console.log('props.profile', props.profile);
   return (
     <div className={s.profileInfo}>
       <img
@@ -17,7 +17,7 @@ const ProfileInfo = (props) => {
       />
       <div className={s.description_block}>
         <p>Профиль {props.profile.fullName}, id: {props.profile.userId}</p>
-        <div><img src={props.profile.photos.small} /></div>
+        <div><img src={props.profile.photos.small ? props.profile.photos.small : "https://binkor.ru/images/vopros/user_hover.png"} /></div>
         O себе: {props.profile.aboutMe}
       </div>
 

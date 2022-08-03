@@ -7,7 +7,7 @@ const Users = (props) => {
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
-        if (i === 20) break;
+        if (i === 25) break;
     }
 
     return (
