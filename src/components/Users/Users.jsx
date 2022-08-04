@@ -11,7 +11,6 @@ const Users = (props) => {
         pages.push(i);
         if (i === 25) break;
     }
-
     return (
         <div>
             {pages.map((p) => (
@@ -39,10 +38,19 @@ const Users = (props) => {
                     <div className={s.userProfile__button}>
                         {u.followed ? (
                             <button
+                                disabled={props.followingInProgress.some(
+                                    (id) => id === u.id
+                                )}
                                 onClick={() => {
+                                    debugger;
+                                    props.toggleFollowingProgress(true, u.id);
                                     followAPI.follow(u.id).then((data) => {
                                         !data.resultCode &&
                                             props.unfollow(u.id);
+                                        props.toggleFollowingProgress(
+                                            false,
+                                            u.id
+                                        );
                                     });
                                 }}
                             >
@@ -50,9 +58,17 @@ const Users = (props) => {
                             </button>
                         ) : (
                             <button
+                                disabled={props.followingInProgress.some(
+                                    (id) => id === u.id
+                                )}
                                 onClick={() => {
+                                    props.toggleFollowingProgress(true, u.id);
                                     followAPI.unfollow(u.id).then((data) => {
                                         !data.resultCode && props.follow(u.id);
+                                        props.toggleFollowingProgress(
+                                            false,
+                                            u.id
+                                        );
                                     });
                                 }}
                             >
