@@ -6,3 +6,25 @@
 .selectedPage {
     font-weight: 700;
 }
+
+.userProfile {
+    display: flex;
+    padding-top: 10px;
+    &__photo {
+        margin-left: 20px;
+    }
+    &__button {
+        align-self: center;
+        margin: 0 15px;
+        width: 100px;
+        button {
+            color: blue;
+            padding: 7px;
+            font-size: 1.1em;
+        }
+    }
+    &__info {
+        align-self: center;
+        font-size: 1.1em;
+    }
+}
