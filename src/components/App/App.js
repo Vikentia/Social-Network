@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './App.module.scss';
-import Header from '../Header/Header';
+import HeaderContainer from '../Header/HeaderContainer';
 import Navigation from '../Navigation/Navigation';
 import ProfileContainer from '../Profile/ProfileContainer';
 import { Route, Routes } from 'react-router-dom';
@@ -10,7 +10,7 @@ import UsersContainer from '../Users/UsersContainer';
 const App = () => {
   return (
     <div className={s.App}>
-      <Header />
+      <HeaderContainer />
       <Navigation />
 
       <div className={s.content}>
@@ -20,6 +20,7 @@ const App = () => {
             <Route path=':userId' element={<ProfileContainer />} />
           </Route>
           <Route path='/users' element={<UsersContainer />} />
+          {/* <Route path='/login' element={<UsersContainer />} /> */}
         </Routes>
       </div>
     </div>
