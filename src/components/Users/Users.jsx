@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Users.module.scss";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { followAPI } from "../../api/api";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -39,21 +40,10 @@ const Users = (props) => {
                         {u.followed ? (
                             <button
                                 onClick={() => {
-                                    axios
-                                        .delete(
-                                            `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    "API-KEY":
-                                                        "43682266-6cea-407d-95a3-5756ab4b895a",
-                                                },
-                                            }
-                                        )
-                                        .then((response) => {
-                                            !response.data.resultCode &&
-                                                props.unfollow(u.id);
-                                        });
+                                    followAPI.follow(u.id).then((data) => {
+                                        !data.resultCode &&
+                                            props.unfollow(u.id);
+                                    });
                                 }}
                             >
                                 Unfollow
@@ -61,22 +51,9 @@ const Users = (props) => {
                         ) : (
                             <button
                                 onClick={() => {
-                                    axios
-                                        .post(
-                                            `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                                            {},
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    "API-KEY":
-                                                        "43682266-6cea-407d-95a3-5756ab4b895a",
-                                                },
-                                            }
-                                        )
-                                        .then((response) => {
-                                            !response.data.resultCode &&
-                                                props.follow(u.id);
-                                        });
+                                    followAPI.unfollow(u.id).then((data) => {
+                                        !data.resultCode && props.follow(u.id);
+                                    });
                                 }}
                             >
                                 Follow
