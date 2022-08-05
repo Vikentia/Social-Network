@@ -1,8 +1,6 @@
 import React from "react";
 import s from "./Users.module.scss";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { followAPI } from "../../api/api";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -21,7 +19,6 @@ const Users = (props) => {
                     {p}
                 </span>
             ))}
-
             {props.users.map((u) => (
                 <div className={s.userProfile} key={u.id}>
                     <div className={s.userProfile__photo}>
@@ -42,16 +39,7 @@ const Users = (props) => {
                                     (id) => id === u.id
                                 )}
                                 onClick={() => {
-                                    debugger;
-                                    props.toggleFollowingProgress(true, u.id);
-                                    followAPI.follow(u.id).then((data) => {
-                                        !data.resultCode &&
-                                            props.unfollow(u.id);
-                                        props.toggleFollowingProgress(
-                                            false,
-                                            u.id
-                                        );
-                                    });
+                                    props.unfollow(u.id);
                                 }}
                             >
                                 Unfollow
@@ -62,14 +50,7 @@ const Users = (props) => {
                                     (id) => id === u.id
                                 )}
                                 onClick={() => {
-                                    props.toggleFollowingProgress(true, u.id);
-                                    followAPI.unfollow(u.id).then((data) => {
-                                        !data.resultCode && props.follow(u.id);
-                                        props.toggleFollowingProgress(
-                                            false,
-                                            u.id
-                                        );
-                                    });
+                                    props.follow(u.id);
                                 }}
                             >
                                 Follow
