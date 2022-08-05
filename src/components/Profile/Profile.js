@@ -4,7 +4,6 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.scss'
 
 
-
 const Profile = (props) => {
 
     return (
