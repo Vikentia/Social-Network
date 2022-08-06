@@ -2,6 +2,7 @@ import React from "react";
 import Users from "./Users";
 import { connect } from "react-redux";
 import { Preloader } from "../common/Preloader/Preloader";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
     setCurrentPage,
     getUsers,
@@ -48,9 +49,11 @@ let mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {
-    setCurrentPage,
-    getUsers,
-    follow,
-    unfollow,
-})(UsersContainer);
+export default withAuthRedirect(
+    connect(mapStateToProps, {
+        setCurrentPage,
+        getUsers,
+        follow,
+        unfollow,
+    })(UsersContainer)
+);

@@ -20,7 +20,7 @@ function Dialogs(props) {
         let body = e.target.value;
         props.updateNewMessageBody(body);
     }
-    if (!props.isAuth) return <Navigate to={'/login'} />
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__items}>
