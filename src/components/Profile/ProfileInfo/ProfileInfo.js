@@ -19,7 +19,7 @@ const ProfileInfo = (props) => {
         <p>Профиль {props.profile.fullName}, id: {props.profile.userId}</p>
         <div><img src={props.profile.photos.small ? props.profile.photos.small : "https://binkor.ru/images/vopros/user_hover.png"} /></div>
         O себе: {props.profile.aboutMe}
-        <ProfileStatus status={'Статус'}/>
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
       </div>
 
     </div>
