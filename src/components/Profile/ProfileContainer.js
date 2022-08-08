@@ -15,7 +15,7 @@ import {
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.router.params.userId;
-        if (!userId) { userId = 2 }   //устанавливает по умолчанию юзера с id=2
+        if (!userId) { userId = 25234 }   //устанавливает по умолчанию юзера с id=25234
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
     }
