@@ -3,22 +3,20 @@ import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 import s from './Dialogs.module.scss';
 import { Navigate } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
 
 
 function Dialogs(props) {
     let state = props.dialogsPage;
 
-    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <Dialog key={dialog.id} id={dialog.id} name={dialog.name} />);
+    let dialogsElements = state.dialogs.map(dialog => <Dialog key={dialog.id} id={dialog.id} name={dialog.name} />);
     let messagesElements = state.messages.map(mess => <Message key={mess.id} message={mess.message} />)
-    // let newMessageBody = state.messages.newMessageBody;
-    let newMessageBody = state.newMessageBody;
 
-    let onSendMessageClick = () => {
-        props.sendMessage()
-    }
-    let onNewMessageChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMessageBody(body);
+    // let newMessageBody = state.newMessageBody;
+
+
+    let addNewMessage = (values) => {
+        props.sendMessage(values.newMessageBody);
     }
 
     return (
@@ -29,15 +27,24 @@ function Dialogs(props) {
 
             <div className={s.messages}>
                 <div>{messagesElements}</div>
-                <div>
-                    <div><textarea onChange={onNewMessageChange} value={newMessageBody} placeholder="Enter your message"></textarea></div>
-                    <div><button onClick={onSendMessageClick}>Send</button></div>
-                </div>
+                <AddMessageFormRedux onSubmit={addNewMessage} />
             </div>
 
         </div>
     )
 }
+const AddMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={'textarea'} name='newMessageBody' placeholder="Enter your message" />
+                {/* onChange={onNewMessageChange} value={newMessageBody}  */}
+                <button>Send</button>
+            </div>
+        </form>
+    )
+}
 
+const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessageForm' })(AddMessageForm)
 export default Dialogs;
 
