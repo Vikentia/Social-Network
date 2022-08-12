@@ -5,6 +5,7 @@ import { required } from '../../utils/validators';
 import { connect } from 'react-redux'
 import { login } from '../../redux/auth-reducer';
 import { Navigate } from "react-router-dom";
+import s from "./Login.module.scss";
 
 const LoginForm = (props) => {
 
@@ -12,6 +13,7 @@ const LoginForm = (props) => {
         <div><Field component={Input} name={'email'} placeholder="Email" validate={required} /></div>
         <div><Field component={Input} name={'password'} placeholder="Password" type={'password'} validate={required} /></div>
         <div><Field component={Input} name={'rememberMe'} type={'checkbox'} />remember me</div>
+        {props.error && <div className={s.form__summaryError}>{props.error}</div>}
         <div><button>Login</button></div>
     </form>
 };
@@ -23,7 +25,7 @@ const Login = (props) => {
         props.login(formData.email, formData.password, formData.rememberMe);
     }
     if (props.isAuth) {
-        return <Navigate to={'/profile'}/>
+        return <Navigate to={'/profile'} />
     }
     return <div>
         <h1>Login</h1>
