@@ -15,7 +15,9 @@ import {
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.router.params.userId;
-        if (!userId) { userId = this.props.userId }   //устанавливает по умолчанию юзера с id=25234
+        if (!userId) {
+            userId = this.props.userId
+        }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
     }
@@ -34,7 +36,7 @@ let mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
 })
 
-export default compose(connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }), withRouter)(ProfileContainer)
+export default compose(withAuthRedirect, connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }), withRouter)(ProfileContainer)
 
 
 

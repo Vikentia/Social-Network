@@ -50,6 +50,6 @@ let mapStateToProps = (state) => {
     };
 };
 export default compose(
-    withAuthRedirect,
+    // withAuthRedirect,
     connect(mapStateToProps, { setCurrentPage, getUsers, follow, unfollow })
 )(UsersContainer);
