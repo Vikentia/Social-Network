@@ -14,7 +14,7 @@ import {
 } from "../../redux/users-selectors";
 import {
     setCurrentPage,
-    getUsers,
+    requestUsers,
     follow,
     unfollow,
 } from "../../redux/users-reducer";
@@ -70,5 +70,10 @@ let mapStateToProps = (state) => {
 };
 export default compose(
     // withAuthRedirect,
-    connect(mapStateToProps, { setCurrentPage, getUsers, follow, unfollow })
+    connect(mapStateToProps, {
+        setCurrentPage,
+        getUsers: requestUsers,
+        follow,
+        unfollow,
+    })
 )(UsersContainer);
