@@ -21,12 +21,13 @@ import {
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const { currentPage, pageSize } = this.props;
+        this.props.getUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUsers(pageNumber, pageSize);
     };
 
     render() {
@@ -34,7 +35,7 @@ class UsersContainer extends React.Component {
             <>
                 {this.props.isFetching && <Preloader />}
                 <Users
-                    pageSize={this.props.pageSize}
+                    pageSize={pageSize}
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
                     users={this.props.users}
