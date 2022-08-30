@@ -7,6 +7,7 @@ const Users = ({
     onPageChanged,
     pageSize,
     users,
+    currentPage,
     followingInProgress,
     unfollow,
     follow,
@@ -14,12 +15,14 @@ const Users = ({
 }) => {
     return (
         <div>
-            <Pagination
-                currentPage={currentPage}
-                onPageChanged={onPageChanged}
-                totalUsersCount={totalUsersCount}
-                pageSize={pageSize}
-            />
+            <div>
+                <Pagination
+                    currentPage={currentPage}
+                    onPageChanged={onPageChanged}
+                    totalUsersCount={totalUsersCount}
+                    pageSize={pageSize}
+                />
+            </div>
             {users.map((user) => (
                 <User
                     key={user.id}

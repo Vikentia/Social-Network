@@ -1,5 +1,6 @@
 import React from 'react'
 import s from './FormsControls.module.scss'
+import { Field } from 'redux-form'
 
 const FormControl = ({ input, meta, children, ...props }) => {
     const hasError = meta.touched && meta.error
