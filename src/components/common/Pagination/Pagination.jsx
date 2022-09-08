@@ -28,7 +28,7 @@ const Pagination = ({
                         setPortionNumber(portionNumber - 1);
                     }}
                 >
-                    PREV
+                    «
                 </button>
             )}
 
@@ -40,7 +40,11 @@ const Pagination = ({
                 )
                 .map((p) => {
                     return (
-                        <span key={p} onClick={(e) => onPageChanged(p)}>
+                        <span
+                            className={currentPage === p && s.selectedPage}
+                            key={p}
+                            onClick={(e) => onPageChanged(p)}
+                        >
                             {p}
                         </span>
                     );
@@ -51,7 +55,7 @@ const Pagination = ({
                         setPortionNumber(portionNumber + 1);
                     }}
                 >
-                    NEXT
+                    »
                 </button>
             )}
         </div>
