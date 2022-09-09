@@ -1,6 +1,16 @@
-.description_block {
+.descriptionBlock {
     padding: 10px;
+    &__aboutMe {
+        margin: 5px;
+        color: blue;
+    }
+    &__status {
+        color: green;
+    }
 }
-.myProfile__photo {
-    height: 30px;
+
+.mainPhoto {
+    height: 150px;
+}
+.profileInfo {
 }
