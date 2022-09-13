@@ -1,11 +1,14 @@
 .descriptionBlock {
     padding: 10px;
     &__aboutMe {
-        margin: 5px;
-        color: blue;
+        // margin: 5px;
+        // color: blue;
     }
     &__status {
-        color: green;
+        display: flex;
+    }
+    &__contacts {
+        padding-left: 10px;
     }
 }
 

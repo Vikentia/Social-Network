@@ -1,13 +1,15 @@
 import React from "react";
 import s from './Post.module.scss';
+import postImage from '../../../../assets/post.png'
+import heartImage from '../../../../assets/heart.png'
 
 function Post(props) {
     return (
         <div className={s.post}>
-            <img src='https://get.wallhere.com/photo/1600x1200-px-boxes-Danbo-eyes-fallen-glowing-leaves-1629619.jpg' alt='ava' />
+            <img src={postImage} alt='avator' className={s.post__messImage}/>
             Post: {props.message}
             <div>
-                <span> Like {props.likesCount}</span>
+                <span> <img src={heartImage} alt='like' className={s.post__heart}/> {props.likesCount}</span>
             </div>
         </div>
     )

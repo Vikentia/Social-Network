@@ -1,6 +1,13 @@
-.post img {
-   height: 50px; 
-   width: 50px;
-   border-radius: 30px;
-   margin-top : 10px;
+.post {
+    &__messImage {
+        height: 50px;
+        width: 50px;
+        border-radius: 30px;
+        margin-top: 10px;
+    }
+    &__heart {
+        height: 15px;
+        position: relative;
+        top: 2px;
+    }
 }
