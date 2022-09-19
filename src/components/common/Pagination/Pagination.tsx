@@ -1,7 +1,15 @@
 import React from "react";
 import s from "./Pagination.module.scss";
 
-const Pagination = ({
+type PropsType = {
+    totalItemsCount: number;
+    pageSize: number;
+    currentPage: number;
+    onPageChanged: (pageNumber: number) => void;
+    portionSize?: number;
+};
+
+const Pagination: React.FC<PropsType> = ({
     totalItemsCount,
     pageSize,
     currentPage,
@@ -10,7 +18,7 @@ const Pagination = ({
 }) => {
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
 
-    let pages = [];
+    let pages: number[] = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
@@ -41,7 +49,9 @@ const Pagination = ({
                 .map((p) => {
                     return (
                         <span
-                            className={currentPage === p && s.selectedPage}
+                            className={
+                                (currentPage === p && s.selectedPage) || ""
+                            }
                             key={p}
                             onClick={(e) => onPageChanged(p)}
                         >

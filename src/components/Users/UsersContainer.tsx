@@ -18,14 +18,32 @@ import {
     follow,
     unfollow,
 } from "../../redux/users-reducer";
+import { UserType } from "../../types/types";
+import { AppStateType } from "../../redux/redux-store";
+type MapStatePropsType = {
+    currentPage: number;
+    pageSize: number;
+    isFetching: boolean;
+    totalUsersCount: number;
+    users: Array<UserType>;
+    followingInProgress: Array<number>;
+};
+type MapDispatchPropsType = {
+    unfollow: (id: number) => void;
+    follow: (id: number) => void;
+    getUsers: (currentPage: number, pageSize: number) => void;
+    setCurrentPage: (pageNumber: number) => void;
+};
+type OwnPropsType = {};
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
 
-class UsersContainer extends React.Component {
+class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         const { currentPage, pageSize } = this.props;
         this.props.getUsers(currentPage, pageSize);
     }
 
-    onPageChanged = (pageNumber) => {
+    onPageChanged = (pageNumber: number) => {
         const { pageSize } = this.props;
         this.props.setCurrentPage(pageNumber);
         this.props.getUsers(pageNumber, pageSize);
@@ -60,7 +78,7 @@ class UsersContainer extends React.Component {
 //     };
 // };
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -72,7 +90,12 @@ let mapStateToProps = (state) => {
 };
 export default compose(
     // withAuthRedirect,
-    connect(mapStateToProps, {
+    connect<
+        MapStatePropsType,
+        MapDispatchPropsType,
+        OwnPropsType,
+        AppStateType
+    >(mapStateToProps, {
         setCurrentPage,
         getUsers: requestUsers,
         follow,
