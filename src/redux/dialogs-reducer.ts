@@ -31,7 +31,7 @@ let initialState = {
     ],
 }
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: DialogsReducerActionTypes): InitialStateType => {
 
     switch (action.type) {
         case SEND_MESSAGE:
@@ -49,4 +49,6 @@ export type SendMessageCreaterActionType = {
     type: typeof SEND_MESSAGE
     payload: { newMessageBody: string }
 }
+
+export type DialogsReducerActionTypes = SendMessageCreaterActionType
 export default dialogsReducer;
