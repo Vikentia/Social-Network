@@ -13,7 +13,7 @@ import {
     getIsFetching,
 } from "../../redux/users-selectors";
 import {
-    setCurrentPage,
+    actions,
     requestUsers,
     follow,
     unfollow,
@@ -96,7 +96,7 @@ export default compose(
         OwnPropsType,
         AppStateType
     >(mapStateToProps, {
-        setCurrentPage,
+        setCurrentPage: actions.setCurrentPage,
         getUsers: requestUsers,
         follow,
         unfollow,
