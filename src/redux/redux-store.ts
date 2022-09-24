@@ -1,5 +1,5 @@
-import { legacy_createStore as createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { legacy_createStore as createStore, combineReducers, applyMiddleware, compose, Action } from 'redux';
+import thunk, { ThunkAction } from 'redux-thunk';
 import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
@@ -26,5 +26,6 @@ type PropertyTypes<T> = T extends { [key: string]: infer U } ? U : never
 export type ActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertyTypes<T>>
 type RootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<RootReducerType>
+export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
 export default store;
