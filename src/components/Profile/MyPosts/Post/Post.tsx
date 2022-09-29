@@ -2,8 +2,9 @@ import React from "react";
 import s from './Post.module.scss';
 import postImage from '../../../../assets/post.png'
 import heartImage from '../../../../assets/heart.png'
+import { PostsType } from "../../../../types/types";
 
-function Post(props) {
+const Post:React.FC<PostsType>= (props)=> {
     return (
         <div className={s.post}>
             <img src={postImage} alt='avator' className={s.post__messImage}/>

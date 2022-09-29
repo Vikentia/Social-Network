@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './Navigation.module.scss';
 
-function Navigation() {
+const Navigation:React.FC = () => {
     return (
         <div className={s.nav}>
             <div className={s.title}> Навигационное меню </div>
@@ -16,10 +16,7 @@ function Navigation() {
             <div className={s.nav__item}>
                 <NavLink to="/users">Users</NavLink>
             </div>
-
-
         </div>
-
     )
 }
 

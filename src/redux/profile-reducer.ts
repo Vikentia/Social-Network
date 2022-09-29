@@ -35,6 +35,7 @@ const profileReducer = (state = initialState, action: ProfileReducerActionTypes)
                 message: action.payload.newPostText,
                 likesCount: 0
             };
+            // return { ...state, posts: [...state.posts, newPost]};
             return { ...state, posts: [...state.posts, newPost], newPostText: '' };
         case DELETE_POST:
             return { ...state, posts: state.posts.filter(post => action.payload.postId !== post.id) }
@@ -74,7 +75,7 @@ export const updateStatus = (status: string): BaseThunkType<ProfileReducerAction
 }
 export const savePhoto = (file: any): BaseThunkType<ProfileReducerActionTypes> => async (dispatch) => {
     let data = await profileAPI.savePhoto(file)
-    if (!data.resultCode) { dispatch(actions.savePhotoSuccess(data.data.photos)) } 
+    if (!data.resultCode) { dispatch(actions.savePhotoSuccess(data.data.photos)) }
 }
 export const saveProfile = (profile: ProfileType): ThunkTypeProfileReducer => async (dispatch, getState) => {
     const userId = getState().auth.userId
