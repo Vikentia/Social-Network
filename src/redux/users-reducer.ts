@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import { APIResponseType } from '../api/api';
 import { usersAPI } from '../api/users-api'
 import { PhotosType, UserType } from '../types/types';
 import { updateObjectInArray } from '../utils/object-helpers';
@@ -13,7 +14,7 @@ const SET_TOTAL_COUNT = 'SN/USERS/SET_TOTAL_COUNT';
 const TOGGLE_IS_FETCHING = 'SN/USERS/TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS';
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 export type UserReducerActionsTypes = ActionsTypes<typeof actions>
 
 let initialState = {
@@ -74,7 +75,7 @@ export const requestUsers = (page: number, pageSize: number): BaseThunkType<User
     dispatch(actions.setUsers(data.items));
     dispatch(actions.setTotalUsersCount(data.totalCount));
 }
-const followUnfollowFlow = async (dispatch: Dispatch<UserReducerActionsTypes>, userId: number, apiMethod: any, actionCreator: (userId: number) => UserReducerActionsTypes) => {
+const followUnfollowFlow = async (dispatch: Dispatch<UserReducerActionsTypes>, userId: number, apiMethod: (userId: number) => Promise<APIResponseType>, actionCreator: (userId: number) => UserReducerActionsTypes) => {
     dispatch(actions.toggleFollowingProgress(true, userId));
     const data = await apiMethod(userId)
     !data.resultCode && dispatch(actionCreator(userId));
@@ -83,12 +84,12 @@ const followUnfollowFlow = async (dispatch: Dispatch<UserReducerActionsTypes>, u
 export const follow = (userId: number): BaseThunkType<UserReducerActionsTypes> => async (dispatch) => {
     let apiMethod = usersAPI.follow.bind(usersAPI)
     let actionCreator = actions.followSuccess
-    followUnfollowFlow(dispatch, userId, apiMethod, actionCreator)
+    await followUnfollowFlow(dispatch, userId, apiMethod, actionCreator)
 }
 export const unfollow = (userId: number): BaseThunkType<UserReducerActionsTypes> => async (dispatch) => {
     let apiMethod = usersAPI.unfollow.bind(usersAPI)
     let actionCreator = actions.unfollowSuccess
-    followUnfollowFlow(dispatch, userId, apiMethod, actionCreator)
+    await followUnfollowFlow(dispatch, userId, apiMethod, actionCreator)
 }
 
 export default usersReducer;
