@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Dialogs/Dialogs.module.scss"],"names":[],"mappings":"AAAA,wBACI,YAAa,CACb,8BAA+B,CAElC,8BAGG,WAAY","file":"4.05ef3dcb.chunk.css","sourcesContent":[".dialogs {\r\n    display: grid;\r\n    grid-template-columns: 2fr 10fr;\r\n\r\n}\r\n\r\n.dialog_active {\r\n    color: green;\r\n}"]}
