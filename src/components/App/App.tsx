@@ -7,10 +7,12 @@ import { connect } from "react-redux";
 import { initializeApp } from "../../redux/app-reducer";
 import { Preloader } from "../common/Preloader/Preloader";
 import { AppStateType } from "../../redux/redux-store";
+import { UsersPage } from "../Users/UsersPage";
+import { LoginPage } from "../Login/LoginPage";
 const ProfileContainer = lazy(() => import("../Profile/ProfileContainer"));
 const DialogsContainer = lazy(() => import("../Dialogs/DialogsContainer"));
-const UsersContainer = lazy(() => import("../Users/UsersContainer"));
-const Login = lazy(() => import("../Login/Login"));
+// const Login = lazy(() => import("../Login/LoginPage"));
+// const UsersPage = lazy(() => import("../Users/UsersPage"));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>;
 type DispatchPropsType = {
@@ -64,8 +66,8 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                                     element={<ProfileContainer />}
                                 />
                             </Route>
-                            <Route path="/users" element={<UsersContainer />} />
-                            <Route path="/login" element={<Login />} />
+                            <Route path="/users" element={<UsersPage />} />
+                            <Route path="/login" element={<LoginPage />} />
                             <Route
                                 path="/*"
                                 element={<div> 404 NOT FOUND </div>}
