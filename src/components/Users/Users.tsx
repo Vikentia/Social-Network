@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../common/Pagination/Pagination";
+import { useSearchParams } from "react-router-dom";
 import User from "./User";
 import UsersSearchForm from "./UsersSearchForm";
 import {
@@ -22,6 +23,8 @@ import {
 type PropsType = {};
 
 const Users: React.FC<PropsType> = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+
     const totalUsersCount = useSelector(getTotalUsersCount);
     const currentPage = useSelector(getCurrentPage);
     const pageSize = useSelector(getPageSize);
@@ -32,8 +35,35 @@ const Users: React.FC<PropsType> = () => {
     const dispatch = useDispatch<any>();
 
     React.useEffect(() => {
-        dispatch(requestUsers(currentPage, pageSize, filter));
+        const parsed = Object.fromEntries(searchParams);
+        let actualPage = currentPage;
+        let actualFilter = filter;
+        if (parsed.page) actualPage = +parsed.page;
+        if (parsed.term) actualFilter = { ...actualFilter, term: parsed.term };
+        if (parsed.friend)
+            actualFilter = {
+                ...actualFilter,
+                friend:
+                    parsed.friend === "null"
+                        ? null
+                        : parsed.friend === "true"
+                        ? true
+                        : false,
+            };
+        dispatch(requestUsers(actualPage, pageSize, actualFilter));
     }, []);
+
+    React.useEffect(() => {
+        const term = filter.term;
+        const friend = filter.friend;
+
+        let query =
+            (term === "" ? "" : `&term=${term}`) +
+            (friend === null ? "" : `&friend=${friend}`) +
+            (currentPage === 1 ? "" : `&page=${currentPage}`);
+
+        setSearchParams(query);
+    }, [filter, currentPage]);
 
     const onPageChanged = (pageNumber: number) => {
         dispatch(actions.setCurrentPage(pageNumber));
