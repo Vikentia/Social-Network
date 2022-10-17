@@ -1,16 +1,26 @@
-.App {
-    display: grid;
-    grid-template-areas:
-        "h h"
-        "n c";
-    // grid-template-rows: 10vh 90vh;
-    grid-template-columns: 1fr 4fr;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+// .App {
+//     display: grid;
+//     grid-template-areas:
+//         "h h"
+//         "n c";
+//     // grid-template-rows: 10vh 90vh;
+//     grid-template-columns: 1fr 4fr;
+//     font-family: Verdana, Geneva, Tahoma, sans-serif;
+// }
+
+// .content {
+//     // background-image: url(../../pic/bc.jpg) ;
+//     background-color: #f1f1f1;
+//     grid-area: c;
+//     padding-top: 10px;
+// }
+
+.logo {
+    height: 32px;
+    margin: 16px;
+    // background: rgba(255, 255, 255, 0.3);
 }
 
-.content {
-    // background-image: url(../../pic/bc.jpg) ;
-    background-color: #f1f1f1;
-    grid-area: c;
-    padding-top: 10px;
+.siteLayout .siteLayoutBackground {
+    background: #fff;
 }

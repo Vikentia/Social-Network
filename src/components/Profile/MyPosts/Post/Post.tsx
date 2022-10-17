@@ -9,9 +9,7 @@ const Post:React.FC<PostsType>= (props)=> {
         <div className={s.post}>
             <img src={postImage} alt='avator' className={s.post__messImage}/>
             Post: {props.message}
-            <div>
                 <span> <img src={heartImage} alt='like' className={s.post__heart}/> {props.likesCount}</span>
-            </div>
         </div>
     )
 }

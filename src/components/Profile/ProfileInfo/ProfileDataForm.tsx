@@ -9,6 +9,7 @@ import {
 } from "../../common/FormsControls/FormsControls";
 import { InjectedFormProps, reduxForm } from "redux-form";
 import { ProfileType } from "../../../types/types";
+import { Button } from "antd";
 
 type PropsType = {
     profile: ProfileType;
@@ -73,8 +74,8 @@ const ProfileDataForm: React.FC<
         </form>
     );
 };
-const ProfileDataFormReduxForm = reduxForm<ProfileType, PropsType>({ form: "edit-profile" })(
-    ProfileDataForm
-);
+const ProfileDataFormReduxForm = reduxForm<ProfileType, PropsType>({
+    form: "edit-profile",
+})(ProfileDataForm);
 
 export default ProfileDataFormReduxForm;

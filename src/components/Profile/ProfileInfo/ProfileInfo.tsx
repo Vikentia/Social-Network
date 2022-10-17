@@ -4,6 +4,7 @@ import s from "./ProfileInfo.module.scss";
 import ProfileStatus from "./ProfileStatus";
 import ProfileDataForm from "./ProfileDataForm";
 import { ProfileContactsType, ProfileType } from "../../../types/types";
+import { Button } from "antd";
 
 type PropsType = {
     profile: ProfileType | null;
@@ -91,7 +92,7 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({
 }) => {
     return (
         <div>
-            <div>{isOwner && <button onClick={goToEditMode}>Edit</button>}</div>
+            <div>{isOwner && <Button type='primary' onClick={goToEditMode}>Edit</Button>}</div>
             <div>
                 <b>Name:</b> {profile.fullName}
             </div>

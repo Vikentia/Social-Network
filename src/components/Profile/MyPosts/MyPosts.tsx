@@ -9,13 +9,14 @@ import {
     GetStringKeys,
 } from "../../common/FormsControls/FormsControls";
 import { PostsType } from "../../../types/types";
+import { Button } from "antd";
 
 export type MapPropsType = {
-    posts: Array<PostsType>
-}
+    posts: Array<PostsType>;
+};
 export type DispatchPropsType = {
-    addPost: (newPostText: string) => void
-}
+    addPost: (newPostText: string) => void;
+};
 
 type AddPostFormValuesType = { newPostText: string };
 
@@ -62,9 +63,7 @@ const AddNewPostForm: React.FC<
                 [required, maxLength10],
                 Textarea
             )}
-
-            <button>Add</button>
-            <button>Delete</button>
+            <Button type='primary'>Add</Button>
         </form>
     );
 };
