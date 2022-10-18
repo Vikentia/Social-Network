@@ -2,20 +2,22 @@ import React, { lazy, Suspense, useState } from "react";
 import { Route, Routes, Navigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import {Header} from "../Header/Header";
+import { Header } from "../Header/Header";
 import { initializeApp } from "../../redux/app-reducer";
 import { Preloader } from "../common/Preloader/Preloader";
 import { AppStateType } from "../../redux/redux-store";
 import { UsersPage } from "../Users/UsersPage";
 import { LoginPage } from "../Login/LoginPage";
+// import ChatPage from "../../pages/chat/ChatPage";
 
 import s from "./App.module.scss";
-import 'antd/dist/antd.css'
+import "antd/dist/antd.css";
 import { TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 
 const ProfileContainer = lazy(() => import("../Profile/ProfileContainer"));
 const DialogsContainer = lazy(() => import("../Dialogs/DialogsContainer"));
+const ChatPage = lazy(() => import("../../pages/chat/ChatPage"));
 // const Login = lazy(() => import("../Login/LoginPage"));
 // const UsersPage = lazy(() => import("../Users/UsersPage"));
 
@@ -83,6 +85,11 @@ const App: React.FC = () => {
                             <NavLink to="/users">Users</NavLink>
                         </Menu.Item>
                     </SubMenu>
+                    <SubMenu key="sub3" icon={<TeamOutlined />} title="Chat">
+                        <Menu.Item key="4">
+                            <NavLink to="/chat">Chat</NavLink>
+                        </Menu.Item>
+                    </SubMenu>
                 </Menu>
             </Sider>
             <Layout className={s.siteLayout}>
@@ -119,6 +126,10 @@ const App: React.FC = () => {
                                     <Route
                                         path="/login"
                                         element={<LoginPage />}
+                                    />
+                                    <Route
+                                        path="/chat"
+                                        element={<ChatPage />}
                                     />
                                     <Route
                                         path="/*"
