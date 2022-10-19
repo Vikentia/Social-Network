@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input } from "antd";
-
-const wsChannel = new WebSocket(
-    "wss://social-network.samuraijs.com/handlers/ChatHandler.ashx"
-);
-
-export type ChatMessageType = {
-    message: string | null;
-    photo: string | undefined;
-    userId: number | null;
-    userName: string | null;
-};
+import { ChatMessageType } from "../../api/chat-api";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    sendMessage,
+    startMessagesListening,
+    stopMessagesListening,
+} from "../../redux/chat-reducer";
+import { AppStateType } from "../../redux/redux-store";
 
 const ChatPage: React.FC = () => {
     return (
@@ -21,6 +18,16 @@ const ChatPage: React.FC = () => {
 };
 
 const Chat: React.FC = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(startMessagesListening());
+        return () => {
+            //@ts-ignore
+            dispatch(stopMessagesListening());
+        };
+    }, []);
+
     return (
         <div>
             <Messages />
@@ -30,26 +37,13 @@ const Chat: React.FC = () => {
 };
 
 const Messages: React.FC = () => {
-    const [messages, setMessages] = React.useState<ChatMessageType[]>([
-        {
-            message: "Дефолтное сообщение",
-            photo: "https://kartinkin.net/uploads/posts/2021-07/1626811209_19-kartinkin-com-p-kruglie-arti-art-krasivo-20.jpg",
-            userId: 999,
-            userName: "Victoria",
-        },
-    ]);
-
-    React.useEffect(() => {
-        wsChannel.addEventListener("message", (e: MessageEvent) => {
-            let data = JSON.parse(e.data);
-            setMessages((prevMessages) => [...prevMessages, ...data]);
-        });
-    }, []);
+    const messages = useSelector<AppStateType>(
+        (state) => state.chat.messages
+    ) as ChatMessageType[];
 
     return (
         <div style={{ height: "400px", overflow: "auto" }}>
             {messages.map((m) => (
-                //@ts-ignore
                 <Message key={m.userId + m.message} message={m} />
             ))}
         </div>
@@ -68,11 +62,17 @@ const Message: React.FC<{ message: ChatMessageType }> = ({ message }) => {
 
 const AddMessageForm: React.FC = () => {
     const { TextArea } = Input;
-    const [message, setMessage] = React.useState("");
+    const [message, setMessage] = useState("");
+    const [readyStatus, setReadyStatus] = useState<"pending" | "ready">(
+        "pending"
+    );
 
-    const sendMessage = () => {
+    const dispatch = useDispatch();
+
+    const sendMessageHandler = () => {
         if (!message) return;
-        wsChannel.send(message);
+        //@ts-ignore
+        dispatch(sendMessage(message));
         setMessage("");
     };
     return (
@@ -82,7 +82,11 @@ const AddMessageForm: React.FC = () => {
                 value={message}
                 rows={2}
             />
-            <Button onClick={sendMessage} type="primary">
+            <Button
+                onClick={sendMessageHandler}
+                type="primary"
+                // disabled={wsChannel !== null && readyStatus !== "ready"}
+            >
                 Send
             </Button>
         </div>
